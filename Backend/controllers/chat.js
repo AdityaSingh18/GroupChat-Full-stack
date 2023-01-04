@@ -26,3 +26,20 @@ exports.postMessage = async(req,res,next)=>{
         res.status(500).json({message:'unable to add chat'+err})
     }
 }
+
+exports.getMessage = async(req,res,next)=>{
+
+    try {
+        let userId = req.user.id
+        console.log(userId)
+    
+        const data = await Chat.findAll({where:{userId}});
+
+       
+        res.status(200).json({data})
+    } catch (error) {
+        res.status(500).json({message:'unable to get chats'+error})
+    }
+    
+    
+} 
