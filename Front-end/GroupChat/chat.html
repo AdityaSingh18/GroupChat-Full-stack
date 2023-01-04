@@ -1,86 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-  <title>username Lister</title>
-</head>
-<body>
-    
-      
-            <div class="col-md-6 col-lg-7 col-xl-8">
-      
-              <ul class="list-unstyled">
-                <li class="d-flex justify-content-between mb-4">
-                  <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp" alt="avatar"
-                    class="rounded-circle d-flex align-self-start me-3 shadow-1-strong" width="60">
-                  <div class="card">
-                    <div class="card-header d-flex justify-content-between p-3">
-                      <p class="fw-bold mb-0">Brad Pitt</p>
-                      <p class="text-muted small mb-0"><i class="far fa-clock"></i> 12 mins ago</p>
-                    </div>
-                    <div class="card-body">
-                      <p class="mb-0">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua.
-                      </p>
-                    </div>
-                  </div>
-                </li>
-                <li class="d-flex justify-content-between mb-4">
-                  <div class="card w-100">
-                    <div class="card-header d-flex justify-content-between p-3">
-                      <p class="fw-bold mb-0">Lara Croft</p>
-                      <p class="text-muted small mb-0"><i class="far fa-clock"></i> 13 mins ago</p>
-                    </div>
-                    <div class="card-body">
-                      <p class="mb-0">
-                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                        laudantium.
-                      </p>
-                    </div>
-                  </div>
-                  <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp" alt="avatar"
-                    class="rounded-circle d-flex align-self-start ms-3 shadow-1-strong" width="60">
-                </li>
-                <li class="d-flex justify-content-between mb-4">
-                  <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp" alt="avatar"
-                    class="rounded-circle d-flex align-self-start me-3 shadow-1-strong" width="60">
-                  <div class="card">
-                    <div class="card-header d-flex justify-content-between p-3">
-                      <p class="fw-bold mb-0">Brad Pitt</p>
-                      <p class="text-muted small mb-0"><i class="far fa-clock"></i> 10 mins ago</p>
-                    </div>
-                    <div class="card-body">
-                      <p class="mb-0">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua.
-                      </p>
-                    </div>
-                  </div>
-                </li>
-                <li class="bg-white mb-3">
-                  <div class="form-outline">
-                    <textarea class="form-control" id="textAreaExample2" rows="4"></textarea>
-                    <label class="form-label" for="textAreaExample2">Message</label>
-                  </div>
-                </li>
-                <button type="button" class="btn btn-info btn-rounded float-end">Send</button>
-              </ul>
-      
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Group-Chat</title>
+    <link rel="icon" href="data:;base64,=" />
+    <link rel="stylesheet" href="./chat.css" />
+  </head>
+  <body>
+    <div class="nav-div">
+      <div class="nav-user-div">
+        
+        <h2 id="username">Rahul</h2>
+      </div>
+      <div class="logout-div">
+        <button id="logout" type="button">LogOut</button>
+      </div>
+    </div>
+    <section>
+      <div class="left">
+        <div class ='create-group'  id="add-user">
+          <form id="form-group">
+            <div >
+              <input type="email" name="email" class="groupName" placeholder="search by email" >
+              <input type="submit" value="+" class="add-btn">
             </div>
-      
-          </div>
-      
+          </form>
         </div>
-      </section>
-  
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
-  <script src="login.js">
+        <div class="groups" style="border-right: 1px solid #373f44;" id="group">
+          <!-- <div style="width:100%;color:white" class="group-style">
+            <button class="user-btn">User 1</button>
+            <button class="add-user">+</button>
+            <button class="remove-user">-</button>
+            <button class="delete-group">r</button>
+          </div> -->
+        </div>
+        
+      </div>
+      <div class="right">
+        <div class="container-div">
+          
+          <div class="chat-container-div">
+            <!-- <div class="notification-div">
+          <h4 class="notfification">Saurav joined!</h4>
+        </div>
 
-  </script>
-</body>
+        <div class="notification-div">
+          <h4 class="notfification">Rahul joined!</h4>
+        </div>
+
+        <div class="msg-div">
+          <div class="resize-received">
+            <div class="received">
+              <p class="received-name">Rahul</p>
+              <p class="received-msg">Hey</p>
+              <p class="received-time">10:00pm</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="msg-div">
+          <div class="sent">
+            <p class="sent-name">Saurav</p>
+            <p class="sent-msg">Hello Bro</p>
+            <p class="sent-time">10:00pm</p>
+             <p class="sent-confirmation"><i class="fa fa-check-double seen"></i></p> 
+          </div>
+        </div>
+
+        <div class="msg-div">
+          <div class="resize-sent">
+            <div class="sent">
+              <p class="sent-name">Saurav</p>
+              <p class="sent-msg">How are you?</p>
+              <p class="sent-time">10:01pm</p>
+               <p class="sent-confirmation"><i class="fa fa-check" aria-hidden="true"></i></p> 
+            </div>
+          </div>
+        </div>
+
+        <div class="msg-div">
+          <div class="resize-received">
+            <div class="received">
+              <p class="received-name">Rahul</p>
+              <p class="received-msg">
+                Good! Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Quas, voluptates quod ratione obcaecati accusantium ipsa error,
+                perspiciatis eum aliquam culpa molestias, vero sunt magnam
+                maxime quos eligendi ab non! Ducimus?
+              </p>
+              <p class="received-time">10:02pm</p>
+            </div>
+          </div>
+        </div> -->
+          </div>
+        </div>
+        <div>
+          <form class="style-form" id="chat-form">
+            <input
+              type="text"
+              name="message"
+              placeholder="Type something ...."
+              autocomplete="off"
+            />
+            <input type="submit" value="send" />
+          </form>
+        </div>
+      </div>
+    </section>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+      integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="./chat.js"></script>
+  </body>
 </html>

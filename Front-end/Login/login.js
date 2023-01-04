@@ -13,11 +13,11 @@ async function savetocloud(event){
   
   const response= await axios.post("http://localhost:3000/user/login",signinDetails)
   .then((Response)=>{
-    if(Response.status===201){
+    if(Response.status===200){
       console.log(Response)
       alert('login sucessfull')
-      localStorage.setItem('token',Response.data.token)
-      window.location.href='./expense.html'
+      localStorage.setItem('userToken',Response.data.token)
+      window.location.href='../GroupChat/chat.html'
     }
 
     if(Response.status===401){
