@@ -37,17 +37,19 @@ document.getElementById('chat-form').onsubmit = async function(e){
 
 async function getMessage(){
     
- setInterval(async () => {
+ //setInterval(async () => {
     try {
         const response =  await axios.get(`http://localhost:3000/user/getMessage`  , {headers:{"Authorization" : token}})
         // console.log(response.data.arr)
-        var newArr = response.data.arr
+        var newArr = response.data.data
+        console.log('newarr')
+        console.log(newArr)
         saveToLocal(newArr);
         
     } catch (err) {
         console.log(err);
     }
-},1000)
+//},1000)
 }
 
 function saveToLocal(arr){
@@ -91,7 +93,7 @@ function showChatsOnScreen(){
             let child = `<div class="msg-div">
             <div class="resize-received">
               <div class="received" id=${chat.id}>
-                <p class="received-name">${chat.name}</p>
+                <p class="received-name">${localStorage.getItem('name')}</p>
                 <p class="received-msg">${chat.message}</p>
                 <p class="sent-time">${chat.createdAt.split('T')[1].slice(0,5)}</p>
               </div>
