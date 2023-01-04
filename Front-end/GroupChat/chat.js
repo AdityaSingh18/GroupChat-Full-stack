@@ -37,9 +37,17 @@ document.getElementById('chat-form').onsubmit = async function(e){
 
 async function getMessage(){
     
+    const messages = JSON.parse(localStorage.getItem(`msg`));
+    // console.log(messages[messages.length-1].id);
+    if(messages == undefined || messages.length == 0) {
+        lastId = 0;
+    }
+    else {
+        lastId = messages[messages.length-1].id;
+    }
  //setInterval(async () => {
     try {
-        const response =  await axios.get(`http://localhost:3000/user/getMessage`  , {headers:{"Authorization" : token}})
+        const response =  await axios.get(`http://localhost:3000/user/getMessage?msg=${lastId}`  , {headers:{"Authorization" : token}})
         // console.log(response.data.arr)
         var newArr = response.data.data
         console.log('newarr')
