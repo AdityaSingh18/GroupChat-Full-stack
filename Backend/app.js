@@ -6,6 +6,9 @@ const sequelize = require('./util/database')
 const userRouter = require('./router/user')
 const Chat = require('./models/chats')
 const User = require('./models/user')
+const Group= require('./models/group')
+const UserGroup = require('./models/usergroup');
+const groupRouter = require('./router/group');
 const app = express();
 /*app.use(cors({
     origin:"*",
@@ -19,9 +22,14 @@ app.use(bodyParser.json({extended:false}))
 
 Chat.belongsTo(User);
 User.hasMany(Chat);
+Group.hasMany(Chat);
+Chat.belongsTo(Group);
 
+User.belongsToMany(Group , {through: UserGroup} )
+Group.belongsToMany(User , {through: UserGroup} )
 
 app.use('/user',userRouter)
+app.use('/group',groupRouter)
 
 
 
