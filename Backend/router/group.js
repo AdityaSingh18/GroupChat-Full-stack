@@ -7,6 +7,8 @@ const usergroupController = require('../controllers/usergroup')
 
 router.get('/getgroups', middleware.authentication , groupController.getGroups  )
 router.post('/create-group' , middleware.authentication , groupController.createGroup)
+router.get('/fetch-users/:groupId' , middleware.authentication , usergroupController.fetchUsers )
 
+router.post('/addUser' , middleware.authentication , usergroupController.addUserToGroup )
 
 module.exports = router;

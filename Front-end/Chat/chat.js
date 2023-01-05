@@ -8,7 +8,7 @@ async function loadScreen(e){
     e.preventDefault();
 
     document.getElementById('username').innerHTML = 'user'
-    getMessage()
+    getMessage(groupId)
         
     }
         
@@ -35,29 +35,29 @@ document.getElementById('chat-form').onsubmit = async function(e){
     }
 }
 
-async function getMessage(){
-    
-    const messages = JSON.parse(localStorage.getItem(`msg`));
-    // console.log(messages[messages.length-1].id);
-    if(messages == undefined || messages.length == 0) {
-        lastId = 0;
-    }
-    else {
-        lastId = messages[messages.length-1].id;
-    }
- //setInterval(async () => {
-    try {
-        const response =  await axios.get(`http://localhost:3000/user/getMessage?msg=${lastId}`  , {headers:{"Authorization" : token}})
-        // console.log(response.data.arr)
-        var newArr = response.data.data
-        console.log('newarr')
-        console.log(newArr)
-        saveToLocal(newArr);
+async function getMessage(groupId){
+    const messages = JSON.parse(localStorage.getItem(`msg${groupId}`));
+
+        if(messages == undefined || messages.length == 0) {
+            lastId = 0;
+        }
+        else {
+            lastId = messages[messages.length-1].id;
+        }
+
+    console.log(lastId)
+    // setInterval(async () => {
+        try {
+            console.log(groupId)
+            const response =  await axios.get(`http://localhost:3000/message/getMessage/${groupId}?msg=${lastId}`  , {headers:{"Authorization" : token}})
         
-    } catch (err) {
-        console.log(err);
-    }
-//},1000)
+            var newArr = response.data.arr
+            saveToLocal(newArr);
+            
+        } catch (err) {
+            console.log(err);
+        }
+    // },1000)
 }
 
 function saveToLocal(arr){
@@ -113,19 +113,4 @@ function showChatsOnScreen(){
             
         }
     })
-
-    function ShowExpenses(user){
-        console.log(user)
-       let parentNode = chatContainer;
-       let childHTML = `<li id=${user.id}> ${user.amount}-${user.descip}-${user.category}
-        <button onclick=deleteUser('${user.id}')> Delete </button>
-      </li>`
-      ;
-      
-      
-      parentNode.innerHTML= parentNode.innerHTML+childHTML;
-        }
-
-    document.getElementById(`${lastId}`).scrollIntoView()
-    console.log(lastId)
 }
