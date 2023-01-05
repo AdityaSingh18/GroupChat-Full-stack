@@ -18,7 +18,7 @@ async function savetocloud(event){
     if(response.status===201){
       console.log("if is working"+Response)
       alert('SignUp Successful')
-      window.location.href='./login.html' 
+      window.location.href='../Login/login.html' 
     }
     else{
         throw new Error('Failed to Logi')

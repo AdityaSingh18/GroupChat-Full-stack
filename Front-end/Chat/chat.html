@@ -6,13 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Group-Chat</title>
     <link rel="icon" href="data:;base64,=" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" href="./chat.css" />
+    
   </head>
   <body>
     <div class="nav-div">
       <div class="nav-user-div">
         
-        <h2 id="username">Rahul</h2>
+        <h2 id="username">Aditya</h2>
       </div>
       <div class="logout-div">
         <button id="logout" type="button">LogOut</button>
@@ -43,7 +45,7 @@
           
           <div class="chat-container-div">
             <!-- <div class="notification-div">
-          <h4 class="notfification">Saurav joined!</h4>
+          <h4 class="notfification">Aditya joined!</h4>
         </div>
         <div class="notification-div">
           <h4 class="notfification">Rahul joined!</h4>
@@ -59,7 +61,7 @@
         </div>
         <div class="msg-div">
           <div class="sent">
-            <p class="sent-name">Saurav</p>
+            <p class="sent-name">Aditya</p>
             <p class="sent-msg">Hello Bro</p>
             <p class="sent-time">10:00pm</p>
              <p class="sent-confirmation"><i class="fa fa-check-double seen"></i></p> 
@@ -68,7 +70,7 @@
         <div class="msg-div">
           <div class="resize-sent">
             <div class="sent">
-              <p class="sent-name">Saurav</p>
+              <p class="sent-name">Aditya</p>
               <p class="sent-msg">How are you?</p>
               <p class="sent-time">10:01pm</p>
                <p class="sent-confirmation"><i class="fa fa-check" aria-hidden="true"></i></p> 
@@ -92,14 +94,14 @@
           </div>
         </div>
         <div>
-          <form class="style-form" id="chat-form">
+          <form class="style-form" id="chat-form" style="padding: 1rem;">
             <input
               type="text"
               name="message"
               placeholder="Type something ...."
               autocomplete="off"
             />
-            <input type="submit" value="send" />
+            <button type="submit" class="btn btn-primary btn-lg" >Send</button  >
           </form>
         </div>
       </div>

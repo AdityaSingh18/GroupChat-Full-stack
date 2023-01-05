@@ -9,6 +9,7 @@ const User = require('./models/user')
 const Group= require('./models/group')
 const UserGroup = require('./models/usergroup');
 const groupRouter = require('./router/group');
+const messageRouter = require('./router/message');
 const app = express();
 /*app.use(cors({
     origin:"*",
@@ -30,6 +31,7 @@ Group.belongsToMany(User , {through: UserGroup} )
 
 app.use('/user',userRouter)
 app.use('/group',groupRouter)
+app.use('/message' , messageRouter)
 
 
 
