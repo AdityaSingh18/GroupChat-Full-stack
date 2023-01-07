@@ -10,6 +10,7 @@ exports.postMessage = async(req,res,next)=>{
         }
         const data = await req.user.createChat({message , groupId})
         const name = req.user.name
+        console.log(data)
         
         const arr = []
         const details = {
@@ -30,7 +31,7 @@ exports.getMessage = async(req,res,next)=>{
     let msgId = req.query.msg ; 
     let groupId = req.params.groupId
     // console.log(groupId);
-    // console.log('///////////////////////////',msgId)
+  
 
     try {
         const data = await Chat.findAll({where:{groupId}});

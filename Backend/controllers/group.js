@@ -5,7 +5,7 @@ const Usergroup = require('../models/usergroup')
 exports.getGroups = async(req,res,next)=>{
     
     try {
-        // let data = await req.user.getGroups()
+        
 
         let groups = await Usergroup.findAll({where:{userId:req.user.id}})
         let data = []

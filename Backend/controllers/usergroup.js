@@ -7,7 +7,7 @@ const Usergroup = require('../models/usergroup');
 exports.fetchUsers = async(req,res,next)=>{
     try {
         let groupId = req.params.groupId ;
-        // console.log('...........................' , groupId)
+        
         const group = await  Group.findByPk(groupId)
         if(!group){
             return res.status(404).json({message:"no group found"})
@@ -32,7 +32,7 @@ exports.addUserToGroup = async(req,res,next)=>{
         if(!user || !group){
             return res.status(404).json({message:'User not found'})
         }
-    //    console.log(user);
+    
             const check = await group.hasUser(user);
             console.log(check);
             if(check){
@@ -48,7 +48,7 @@ exports.addUserToGroup = async(req,res,next)=>{
 
 exports.isAdmin  = async(req,res,next)=>{
     let groupId = req.params.groupId 
-    // console.log('/////////////////////' , groupId)
+   
     try {
         if(!groupId){
             return res.status(400).json({message:'no group id found'})
@@ -57,10 +57,11 @@ exports.isAdmin  = async(req,res,next)=>{
         if(!group){
             return res.status(404).json({message:'no group found'})
         }
-        // console.log('dddddddddddddd')
+        
         let row= await  Usergroup.findOne({where:{userId:req.user.id , groupId:groupId }})
+        
         let isAdmin = row.isAdmin ;
-        // console.log(isAdmin)
+        //console.log(isAdmin)
         return res.status(200).json(isAdmin)
     } catch (err) {
         res.status(500).json({error , message: "some error occured" });
@@ -69,7 +70,7 @@ exports.isAdmin  = async(req,res,next)=>{
 
 exports.removeUserFromGroup = async(req,res,next)=>{
     const {userId , groupId} = req.body;
-    // console.log('inside youuuuuuuuuuuuuuuuuuuuuuuuu')
+    
     try {
         if(!userId || !groupId){
             return res.status(400).json({message:'no group id found'})
@@ -86,7 +87,7 @@ exports.removeUserFromGroup = async(req,res,next)=>{
             return res.status(404).json({message:'no group or user found' })
         }
         let result = await group.removeUser(user);
-        console.log('uuuuuuuuuuuuuuu' , result)
+        
         if(!result){
             return res.status(401).json({message:'unable to remove user' })
         }
@@ -99,7 +100,7 @@ exports.removeUserFromGroup = async(req,res,next)=>{
 
 exports.makeAdmin = async(req,res,next)=>{
     const {userId , groupId} = req.body;
-    // console.log('inside youuuuuuuuuuuuuuuuuuuuuuuuu')
+    
     try {
         if(!userId || !groupId){
             return res.status(400).json({message:'no group id found'})
@@ -117,7 +118,7 @@ exports.makeAdmin = async(req,res,next)=>{
             return res.status(404).json({message:'no group or user found' })
         }
         let result = await group.addUser(user , {through:{isAdmin:true}});
-        // console.log('uuuuuuuuuuuuuuu' , result)
+        
         if(!result){
             return res.status(401).json({message:'unable to make admin' })
         }
@@ -130,7 +131,7 @@ exports.makeAdmin = async(req,res,next)=>{
 
 exports.removeAdmin = async(req,res,next)=>{
     const {userId , groupId} = req.body;
-    // console.log('inside youuuuuuuuuuuuuuuuuuuuuuuuu')
+
     try {
         if(!userId || !groupId){
             return res.status(400).json({message:'no group id found'})
@@ -148,7 +149,7 @@ exports.removeAdmin = async(req,res,next)=>{
             return res.status(404).json({message:'no group or user found' })
         }
         let result = await group.addUser(user , {through:{isAdmin:false}});
-        // console.log('uuuuuuuuuuuuuuu' , result)
+        
         if(!result){
             return res.status(401).json({message:'unable to make admin' })
         }

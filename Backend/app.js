@@ -10,14 +10,16 @@ const Group= require('./models/group')
 const UserGroup = require('./models/usergroup');
 const groupRouter = require('./router/group');
 const messageRouter = require('./router/message');
+const Forgotpassword = require('./models/forgotpassword')
+const forgotpassRouter = require('./router/forgotpass')
 const app = express();
-/*app.use(cors({
+app.use(cors({
     origin:"*",
     credentials:true,
     
 }))
-*/
-app.use(cors())
+
+
 
 app.use(bodyParser.json({extended:false}))
 
@@ -28,10 +30,14 @@ Chat.belongsTo(Group);
 
 User.belongsToMany(Group , {through: UserGroup} )
 Group.belongsToMany(User , {through: UserGroup} )
+Forgotpassword.belongsTo(User)
+User.hasMany(Forgotpassword)
 
 app.use('/user',userRouter)
 app.use('/group',groupRouter)
 app.use('/message' , messageRouter)
+app.use('/password',forgotpassRouter)
+
 
 
 
